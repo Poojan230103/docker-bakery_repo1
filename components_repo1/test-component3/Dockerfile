@@ -2,6 +2,8 @@
 
 FROM pip_img
 
-COPY . .
+WORKDIR /app
+
+COPY ./components_repo1/test-component3/requirements.txt .
 
 RUN pip install -r requirements.txt

@@ -36,26 +36,26 @@ function check_component() {
    echo "COMPONENT_NAME: " ${COMPONENT_NAME}
   case ${COMPONENT_NAME} in
     test-component1)
-    DOCKERFILE_PATH=./test-component1/Dockerfile
+    DOCKERFILE_PATH=./components_repo1/test-component1/Dockerfile
     ;;
     test-component2)
-    DOCKERFILE_PATH=./test-component2/Dockerfile
+    DOCKERFILE_PATH=./components_repo1/test-component2/Dockerfile
     ;;
     test-component3)
-    DOCKERFILE_PATH=./test-component3/Dockerfile
+    DOCKERFILE_PATH=./components_repo1/test-component3/Dockerfile
     ;;
     *)
       echo "Invalid component" && exit 1 ;;
   esac
   echo "<Building Image>
-        dockerfile path ::" ${DOCKERFILE_PATH} "
+        dockerfile path ::" $DOCKERFILE_PATH/Dockerfile"
         tag             ::" ${TAG}
 }
 
 
-function build(){
-
-    docker build -f ${DOCKERFILE_PATH} -t ${IMAGE} .
+function build()
+{
+    docker build -t ${IMAGE} -f "${DOCKERFILE_PATH}" .
     case ${PUSH} in
     YES)
     echo "Pushing Image:: " ${IMAGE}
