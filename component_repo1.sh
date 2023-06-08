@@ -3,10 +3,10 @@
 #globals
 COMPONENT_NAME=$1
 TAG_TEMP=$2
-TAG=${TAG_TEMP:=latest}
+TAG=${TAG_TEMP:=1.0}
 TEMP=$3
 PUSH=${TEMP:=-NO}
-IMAGE=prod-nexus.sprinklr.com:8123/intuition/${COMPONENT_NAME}:${TAG}
+IMAGE=docker-bakery-system/${COMPONENT_NAME}:${TAG}
 
 #NEXUS_USER=${NEXUS_USER}
 #NEXUS_PASSWORD=${NEXUS_PASSWORD}
@@ -19,9 +19,9 @@ IMAGE=prod-nexus.sprinklr.com:8123/intuition/${COMPONENT_NAME}:${TAG}
 
 function usage() {
   echo "./build-component.sh <component> <docker-tag> <push?>"
-  echo "component = one among  [test-component1
-                                test-component2
-                                test-component3]"
+  echo "component = one among  [test-component1_repo1
+                                test-component2_repo1
+                                test-component3_repo1]"
   echo "docker-tag = tag for the image (default latest)"
   echo "push? = YES or NO (push the image to repo)
                 default:NO
@@ -35,20 +35,20 @@ function ping(){
 function check_component() {
    echo "COMPONENT_NAME: " ${COMPONENT_NAME}
   case ${COMPONENT_NAME} in
-    test-component1)
-    DOCKERFILE_PATH=./components_repo1/test-component1/Dockerfile
+    test-component1_repo1)
+    DOCKERFILE_PATH=./components_repo1/test-component1_repo1/Dockerfile
     ;;
-    test-component2)
-    DOCKERFILE_PATH=./components_repo1/test-component2/Dockerfile
+    test-component2_repo1)
+    DOCKERFILE_PATH=./components_repo1/test-component2_repo1/Dockerfile
     ;;
-    test-component3)
-    DOCKERFILE_PATH=./components_repo1/test-component3/Dockerfile
+    test-component3_repo1)
+    DOCKERFILE_PATH=./components_repo1/test-component3_repo1/Dockerfile
     ;;
     *)
       echo "Invalid component" && exit 1 ;;
   esac
   echo "<Building Image>
-        dockerfile path ::" $DOCKERFILE_PATH/Dockerfile"
+        dockerfile path ::" ${DOCKERFILE_PATH}"
         tag             ::" ${TAG}
 }
 
