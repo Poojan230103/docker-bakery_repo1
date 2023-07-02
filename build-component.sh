@@ -6,7 +6,7 @@ TAG_TEMP=$2
 TAG=${TAG_TEMP:=1.0}
 TEMP=$3
 PUSH=${TEMP:=-NO}
-IMAGE=docker-bakery-system/${COMPONENT_NAME}:${TAG}
+IMAGE=poojan23/docker-bakery-system_${COMPONENT_NAME}:${TAG}
 
 
 function ping(){
@@ -15,13 +15,13 @@ function ping(){
 function check_component() {
    echo "COMPONENT_NAME: " ${COMPONENT_NAME}
   case ${COMPONENT_NAME} in
-    test-component1_repo1)
+    repo1-component1)
     DOCKERFILE_PATH=./components_repo1/test-component1_repo1/Dockerfile
     ;;
-    test-component2_repo1)
+    repo1-component2)
     DOCKERFILE_PATH=./components_repo1/test-component2_repo1/Dockerfile
     ;;
-    test-component3_repo1)
+    repo1-component3)
     DOCKERFILE_PATH=./components_repo1/test-component3_repo1/Dockerfile
     ;;
     *)
@@ -35,7 +35,7 @@ function check_component() {
 
 function build()
 {
-    docker build -t ${IMAGE} -f "${DOCKERFILE_PATH}" .
+    docker build --no-cache -t ${IMAGE} -f "${DOCKERFILE_PATH}" .
 }
 
 
