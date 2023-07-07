@@ -1,4 +1,4 @@
-# pylint_img:3.0
+# pylint_img:1.0
 
 FROM pip_img:1.0
 
