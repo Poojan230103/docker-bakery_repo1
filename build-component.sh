@@ -24,6 +24,9 @@ function check_component() {
     repo1-component3)
     DOCKERFILE_PATH=./components_repo1/test-component3_repo1/Dockerfile
     ;;
+    repo1-component4)
+    DOCKERFILE_PATH=./components_repo1/test-component4_repo1/Dockerfile
+    ;;
     *)
       echo "Invalid component" && exit 1 ;;
   esac
@@ -35,7 +38,7 @@ function check_component() {
 
 function build()
 {
-    docker build --no-cache -t ${IMAGE} -f "${DOCKERFILE_PATH}" .
+    docker build -t ${IMAGE} -f "${DOCKERFILE_PATH}" .
 }
 
 
