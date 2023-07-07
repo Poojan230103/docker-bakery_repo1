@@ -11,3 +11,5 @@ RUN apt-get update && apt-get install -y bash
 RUN pip install -r requirements.txt
 
 ENTRYPOINT ["bash", "-c", "while true; do echo hello; sleep 5; done"]
+
+# testing manual sync on repo1-component1
